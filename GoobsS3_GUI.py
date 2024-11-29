@@ -78,7 +78,7 @@ refresh_button = ttk.Button(list_frame, text="Get Bucket Content", command=list_
 refresh_button.pack(side=tk.BOTTOM, pady=5)
 
 # Add a listbox to display files
-file_listbox = tk.Listbox(list_frame, font=("Helvetica", 12))
+file_listbox = tk.Listbox(list_frame, font=("Helvetica", 12), bg="black", fg="green")
 file_listbox.pack(fill=tk.BOTH, expand=True, side=tk.LEFT)
 
 # Add a scrollbar for the listbox

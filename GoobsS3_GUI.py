@@ -1,30 +1,29 @@
+#!/usr/bin/env python3
 import tkinter as tk
 from tkinter import ttk
+from dotenv import load_dotenv
 import requests
 import os
-from dotenv import load_dotenv
-
 
 # Load environment variables from .env.prod
 load_dotenv(dotenv_path=".env.prod")
 
-# Linode Object Storage settings
-# https://techdocs.akamai.com/linode-api/reference/get-object-storage-bucket-content
-apiVERSION = "v4"
+# Linode Object Storage settings https://techdocs.akamai.com/linode-api/reference/get-object-storage-bucket-content
+API_VERSION = "v4"
 LINODE_API_KEY = os.getenv("LINODE_API_KEY")
 REGION = os.getenv("REGION")
 BUCKET_NAME = os.getenv("BUCKET_NAME")
-ENDPOINT_URL = f"https://api.linode.com/{apiVERSION}/object-storage/buckets/{REGION}/{BUCKET_NAME}/object-list?page_size=100"
+ENDPOINT_URL = f"https://api.linode.com/{API_VERSION}/object-storage/buckets/{REGION}/{BUCKET_NAME}/object-list?page_size=100"
 
 headers = {
     "accept": "application/json",
     "authorization": f"Bearer {LINODE_API_KEY}"
 }
 
-# Fetch and display the contents of the bucket.
+# Get and display the contents of the bucket.
 def list_files():
     try:
-        url = f"https://api.linode.com/{apiVERSION}/object-storage/buckets/{REGION}/{BUCKET_NAME}/object-list?page_size=100"
+        url = f"https://api.linode.com/{API_VERSION}/object-storage/buckets/{REGION}/{BUCKET_NAME}/object-list?page_size=100"
         response = requests.get(url, headers=headers)
 
         if response.status_code == 200:
@@ -34,7 +33,7 @@ def list_files():
                 for obj in data["data"]:
                     file_listbox.insert(tk.END, obj["name"])
             else:
-                file_listbox.insert(tk.END, "There are no files in this bucket.")
+                file_listbox.insert(tk.END, "There are no objects to list inside this bucket.")
         else:
             file_listbox.delete(0, tk.END)
             file_listbox.insert(tk.END, f"Error: {response.status_code} - {response.text}")
@@ -67,7 +66,7 @@ def upload_file():
 
 # Create the main window
 root = tk.Tk()
-root.title("Goob's Storage GUI")
+root.title("Goob's Object Storage GUI")
 root.geometry("1280x720")
 
 # Create a frame for the file listing

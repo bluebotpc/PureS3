@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 load_dotenv(dotenv_path=".env.prod")
 
 # Linode Object Storage settings
+# https://techdocs.akamai.com/linode-api/reference/get-object-storage-bucket-content
 apiVERSION = "v4"
 LINODE_API_KEY = os.getenv("LINODE_API_KEY")
 REGION = os.getenv("REGION")

@@ -22,9 +22,9 @@ headers = {
 
 # Get and display the contents of the bucket.
 def list_files():
-    try:
+    try: # API Documentation here https://www.ipify.org/
         url = f"https://api.linode.com/{API_VERSION}/object-storage/buckets/{REGION}/{BUCKET_NAME}/object-list?page_size=100"
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers) # Requests doc https://requests.readthedocs.io/en/latest/
 
         if response.status_code == 200:
             file_listbox.delete(0, tk.END)  # Clear the listbox
@@ -37,7 +37,7 @@ def list_files():
         else:
             file_listbox.delete(0, tk.END)
             file_listbox.insert(tk.END, f"Error: {response.status_code} - {response.text}")
-    except Exception as e:
+    except Exception as e: # Basic error catching. I want to add specific messages for HTTP failures outlined here. https://techdocs.akamai.com/linode-api/reference/get-object-storage-bucket
         file_listbox.delete(0, tk.END)  # Clear the listbox on error
         file_listbox.insert(tk.END, f"Error: {e}")
 
@@ -52,7 +52,7 @@ def upload_file():
                 response = requests.put(
                     url, 
                     data=file_data,
-                    headers={"authorization": f"Bearer {LINODE_API_KEY}"}
+                    headers={"authorization": f"Bearer {LINODE_API_KEY}"} # code directly ripped from the Linode docs.
                 )
 
             if response.status_code == 200 or response.status_code == 201:

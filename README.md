@@ -1,26 +1,34 @@
-# Goobs Linode Object Storage GUI
+# PureS3 Tool
 
-Created for my personal use.
+Created to reduce dependacy on Linode's Cloud Manager web interface.
 
-Requires an ```.env.prod``` file in the repo. It will requre a Linode API/PAT key as seen in the example below.
+Requires an ```.env``` file in the repo. It will requre a Linode API/PAT key as seen in the example below.
 
 ```txt
 LINODE_API_KEY=
 REGION=
 BUCKET_NAME=
+LINODE_API_VERSION=v4
 ```
 
-## Windows
+## Wiindows Project Setup
 
-- Clone the repo
-- Setup Virtual Environment ```python3 -m venv venv```
-- Activate the new Virtual Environment
+```shell
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python app.py
+```
 
-**Wiindows:** ```.\venv\Scripts\activate```
+CTRL+C to break. ```deactivate``` to clean up.
 
-**MacOS/Linux:** ```source venv/bin/activate```
+### Linux Project Setup
 
-- Install the dependencies ```pip install -r requirements.txt```
-- Run GoobsS3_GUI.py ```python app.py```
-- Exit the virtual environment. ```deactivate```
-- Remove leftover data. ```rm -rf venv```
+```shell
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python3 ./app.py
+```
+
+CTRL+C to break. ```deactivate``` to clean up.

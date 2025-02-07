@@ -64,7 +64,7 @@ def upload_file():
 #ABOVE THIS LINE IS FOR FUNCTIONS - BELOW THIS LINE IS FOR GUI COMPONENTS.
 # Create the main window.
 root = tk.Tk()
-root.title("BlueBotPC PureS3 Interface")
+root.title("BlueBotPC GoobyS3 Interface")
 root.geometry("1280x720")
 
 # Frame to contain the Object Storage content.
